@@ -1,3 +1,42 @@
+# Local Database
+# Student: Cecilia Quinto
+# Project Overview
+
+This project documents the creation and use of a local PostgreSQL database to manage, clean and analyze experimental data collected from three types of sensors:
+
+GC (Gas Chromatograhy)
+IR (Infrared)
+E-Nose(Electronic Nose)
+
+The data was collected over two experimental sessions, called Run 1, and Run 2. Each sensor has its own dataset per run, resulting in 6 total tables per ID. The primary goal is to prepare the data for statistical analysis.
+
+## 🗂️ Folder Structure
+
+```
+project/
+│
+├── raw_data/               ← Original CSV files from experiments
+│   ├── run1_gc.csv
+│   ├── run1_ir.csv
+│   └── ...
+│
+├── cleaned_data/           ← Cleaned CSVs after formatting and corrections
+│   ├── run1_gc_cleaned.csv
+│   └── ...
+│
+├── sql/
+│   ├── init_schema.sql     ← SQL file to create tables
+│   ├── load_data.sql       ← SQL commands to import CSVs
+│   └── queries.sql         ← Example queries for analysis
+│
+├── README.md               ← This documentation
+└── notes/
+    └── data_cleaning_steps.md ← Detailed notes on data preprocessing
+```
+
+
+
+
 # An-Introduction-to-DataGrip
 **Important Tip:** Before opening any links (blue text), we highly recommend right-clicking on them and selecting **"Open link in new tab"** to ensure the guide remains open.
 
