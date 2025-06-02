@@ -21,20 +21,44 @@ project/
 │   └── ...
 │
 ├── cleaned_data/           ← Cleaned CSVs after formatting and corrections
-│   ├── run1_gc_cleaned.csv
+│   ├── run1_gc.csv
 │   └── ...
 │
 ├── sql/
-│   ├── init_schema.sql     ← SQL file to create tables
+│   ├── CreationTables.sql     ← SQL file to create tables
 │   ├── load_data.sql       ← SQL commands to import CSVs
-│   └── queries.sql         ← Example queries for analysis
+│   └── Query.sql         ← Queries for analysis
 │
 ├── README.md               ← This documentation
 └── notes/
     └── data_cleaning_steps.md ← Detailed notes on data preprocessing
 ```
 
+# ✅ Step 1: Understanding the Raw Data
 
+Each sensor produced a CSV file per run. These files originally included:
+
+- Sensor readings over time for each Test ID (1 to 50)  
+- Some columns with missing or invalid values  
+- Inconsistent formatting, such as:
+  - Commas instead of dots for decimal numbers  
+  - Empty cells  
+  - Column headers missing or mismatched  
+  - Extra columns or misaligned rows
+
+ ---
+
+## Step 2: Cleaning the Data
+
+All CSV files were cleaned using a spreadsheet tool (Excel or LibreOffice) and/or Python (Pandas library). The cleaning involved:
+
+- **Assigning missing IDs**: Ensuring each row is correctly associated with a Test ID from 1 to 50.  
+- **Correcting decimal formats**: Replacing commas (`,`) with dots (`.`) in numeric values to allow correct parsing.  
+- **Filling missing values**: Instead of removing rows with missing data, appropriate placeholder values (e.g., NULL) were assigned to empty cells to preserve the structure and completeness of the dataset.
+- **Standardizing columns**: Ensuring all files have the same structure: `test_id`, `timestamp`, and sensor readings.  
+- **Saving cleaned files**: Exported as `.csv` again in UTF-8 encoding, ready to be imported into the database.  
+
+---
 
 
 # An-Introduction-to-DataGrip
