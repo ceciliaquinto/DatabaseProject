@@ -60,6 +60,36 @@ All CSV files were cleaned using a spreadsheet tool (Excel or LibreOffice) and/o
 
 ---
 
+## 🛠️ Step 3: Creating the Local PostgreSQL Database
+
+We used **DataGrip** to connect to PostgreSQL, but any client (pgAdmin, DBeaver, CLI) will work.
+
+### Database setup:
+
+Create a new database called `sensor_data`:
+
+```sql
+CREATE DATABASE sensor_data;
+```
+
+Create tables using this example structure (`sql/init_schema.sql`):
+
+```sql
+CREATE TABLE run1_gc (
+    id SERIAL PRIMARY KEY,
+    test_id INT,
+    timestamp TIMESTAMP,
+    sensor_value_1 FLOAT,
+    sensor_value_2 FLOAT,
+    ...
+);
+-- Repeat for run1_ir, run1_enorse, run2_gc, etc.
+```
+
+You will have **six tables in total**, one for each sensor/run combination.
+
+---
+
 
 # An-Introduction-to-DataGrip
 **Important Tip:** Before opening any links (blue text), we highly recommend right-clicking on them and selecting **"Open link in new tab"** to ensure the guide remains open.
