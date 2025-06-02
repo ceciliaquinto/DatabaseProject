@@ -2,7 +2,7 @@
 **Important Tip:** Before opening any links (blue text), we highly recommend right-clicking on them and selecting **"Open link in new tab"** to ensure the guide remains open.
 
 # DataGrip Installation Guide 🛢️
-### What is PostgreSQL?cccccc
+### What is PostgreSQL?
 DataGrip is a powerful database IDE developed by JetBrains, designed for database developers and administrators. It supports multiple database management systems
 
 ## ✨ STEP 1 - Download 💾
