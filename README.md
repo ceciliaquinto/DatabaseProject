@@ -144,9 +144,9 @@ LEFT JOIN r1_e_norse ON r1_gc.testid = r1_e_norse.testid;
 Purpose:
 Join the three sensor tables (ir, gc, e_norse) for run 1 to analyze combined data.
 
-3. Query: Select Specific Columns from IR Table (Run 1)
+## 3. Query: Select Specific Columns from IR Table (Run 1)
 
-```
+```sql
 SELECT ratios, harmonic, fundamental, location, testid
 FROM r1_ir;
 
@@ -155,9 +155,9 @@ FROM r1_ir;
 Purpose:
 Retrieve specific relevant columns from the infrared sensor data for run 1.
 
-4. Query: Filter GC Table (Run 1) by Test ID
+## 4. Query: Filter GC Table (Run 1) by Test ID
 
-```
+```sql
 SELECT *
 FROM r1_gc
 WHERE testid = 1;
@@ -166,9 +166,9 @@ WHERE testid = 1;
 Purpose:
 Select all columns for test ID 1 from the gas chromatography data in run 1.
 
-5. Query: Select All Data from E-Norse Table (Run 1), Ordered by Test ID and Sequence
+## 5. Query: Select All Data from E-Norse Table (Run 1), Ordered by Test ID and Sequence
 
-```
+```sql
 SELECT *
 FROM r1_e_norse
 ORDER BY testid, seq_order ASC;
@@ -177,9 +177,9 @@ ORDER BY testid, seq_order ASC;
 Purpose:
 Retrieve all e-norse sensor data for run 1, sorted by test ID and sequence order.
 
-6. Query: Verify Number of Distinct Test IDs in Each Table
+## 6. Query: Verify Number of Distinct Test IDs in Each Table
 
-```
+```sql
 SELECT COUNT(DISTINCT testid) FROM r1_gc;
 SELECT COUNT(DISTINCT testid) FROM r1_ir;
 SELECT COUNT(DISTINCT testid) FROM r1_e_norse;
@@ -191,9 +191,9 @@ SELECT COUNT(DISTINCT testid) FROM r2_e_norse;
 Purpose:
 Count how many unique tests (testid) are present in each sensor table for both experimental runs. Useful for data completeness checks.
 
-7. Query: Calculate Average E-Norse Sensor Value per Test (Run 1)
+## 7. Query: Calculate Average E-Norse Sensor Value per Test (Run 1)
 
-```
+```sql
 SELECT
     testid,
     AVG((
@@ -212,9 +212,9 @@ GROUP BY testid;
 Purpose:
 Compute the average sensor reading across all 64 individual e-norse sensors for each test in run 1.
 
-8. Query: Calculate Average Humidity and Temperature per Test (Run 1)
+## 8. Query: Calculate Average Humidity and Temperature per Test (Run 1)
 
-```
+```sql
 SELECT testid,
        AVG(Humidity) AS avg_humidity,
        AVG(Temperature) AS avg_temp
@@ -224,9 +224,9 @@ GROUP BY testid;
 Purpose:
 Calculate average environmental conditions (humidity and temperature) for each test in run 1.
 
-9. Query: Calculate Average Reading per Individual E-Norse Sensor (Run 1)
+## 9. Query: Calculate Average Reading per Individual E-Norse Sensor (Run 1)
 
-```
+```sql
 SELECT
     AVG(D1) AS avg_d1,
     AVG(D2) AS avg_d2,
@@ -239,9 +239,9 @@ FROM r1_e_norse;
 Purpose:
 Assess which individual e-norse sensors tend to have higher or lower readings on average.
 
-10. Query: Find Maximum and Minimum Sensor Values per Test ID (Run 1)
+## 10. Query: Find Maximum and Minimum Sensor Values per Test ID (Run 1)
 
-```
+```sql
 SELECT
     testid,
     MAX(D1) AS max_d1, MIN(D1) AS min_d1,
@@ -255,9 +255,9 @@ GROUP BY testid;
 Purpose:
 Identify the range of sensor values per test, which is useful for detecting anomalies or sensor behavior extremes.
 
-11. Query: Filter E-Norse Data by Average Sensor Value Threshold (Run 1)
+## 11. Query: Filter E-Norse Data by Average Sensor Value Threshold (Run 1)
 
-```
+```sql
 SELECT *
 FROM r1_e_norse
 WHERE (
