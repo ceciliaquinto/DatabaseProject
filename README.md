@@ -34,6 +34,7 @@ project/
 │   ├── CreationTables.sql     ← SQL file to create tables
 │   ├── load_data.sql       ← SQL commands to import CSVs
 │   └── Query.sql         ← Queries for analysis
+│
 └──readme/
     ├──  README.md               ← The documentation
 ```
