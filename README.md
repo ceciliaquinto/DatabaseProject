@@ -48,9 +48,9 @@ Each sensor produced a CSV file per run. These files originally included:
 
  ---
 
-## Step 2: Cleaning the Data
+## ✅ Step 2: Cleaning the Data
 
-All CSV files were cleaned using a spreadsheet tool (Excel or LibreOffice) and/or Python (Pandas library). The cleaning involved:
+All CSV files were cleaned using a spreadsheet tool (Excel) and Python (Pandas library). The cleaning involved:
 
 - **Assigning missing IDs**: Ensuring each row is correctly associated with a Test ID from 1 to 50.  
 - **Correcting decimal formats**: Replacing commas (`,`) with dots (`.`) in numeric values to allow correct parsing.  
@@ -72,7 +72,7 @@ Create a new database called `sensor_data`:
 CREATE DATABASE sensor_data;
 ```
 
-Create tables using this example structure (`sql/init_schema.sql`):
+Create tables using this example structure (`sql/CreationTables.sql`):
 
 ```sql
 CREATE TABLE run1_gc (
@@ -86,7 +86,10 @@ CREATE TABLE run1_gc (
 -- Repeat for run1_ir, run1_enorse, run2_gc, etc.
 ```
 
-You will have **six tables in total**, one for each sensor/run combination.
+You will have 6 tables in total per ID:
+
+run1_gc, run1_ir, run1_enorse
+run2_gc, run2_ir, run2_enorse
 
 ---
 
@@ -109,12 +112,27 @@ Repeat for **all six cleaned CSVs**.
 
 Once data is in the database, you can begin basic exploration and comparison between sensors. Example queries:
 
-### 1. Average sensor values by test:
-```sql
-SELECT test_id, AVG(sensor_value_1) AS avg_value
-FROM run1_gc
-GROUP BY test_id;
-```
+1. Join All Tables from Both Runs
+SELECT *
+FROM r1_ir
+LEFT JOIN r1_gc ON CAST(r1_ir.testid AS VARCHAR) = r1_gc.testid
+LEFT JOIN r1_e_norse ON r1_gc.testid = r1_e_norse.testid
+
+UNION ALL
+
+SELECT *
+FROM r2_ir
+LEFT JOIN r2_gc ON CAST(r2_ir.testid AS VARCHAR) = r2_gc.testid
+LEFT JOIN r2_e_norse ON r2_gc.testid = r2_e_norse.testid;
+Explanation: Combines IR, GC, and E-Norse data from both runs into a single unified dataset. Uses LEFT JOIN to retain all IR rows and UNION ALL to stack results from both runs.
+
+2. Join Only Run 1 Tables
+SELECT *
+FROM r1_ir
+LEFT JOIN r1_gc ON r1_ir.testid = r1_gc.testid
+LEFT JOIN r1_e_norse ON r1_gc.testid = r1_e_norse.testid;
+Explanation: Joins all tables from run 1 using testid to analyze data from this experimental session.
+
 
 
 # An-Introduction-to-DataGrip
