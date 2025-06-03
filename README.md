@@ -1,12 +1,18 @@
 # Local Database
+
 # Student: Cecilia Quinto
+
 # Project Overview
+
+Initially explored other database options, but found PostgreSQL to be the best fit for this project since it aligns with all requirements such as scalability, complex querying capabilities, and local deployment.
+
+Created PostgreSQL database locally using DataGrip.
 
 This project documents the creation and use of a local PostgreSQL database to manage, clean and analyze experimental data collected from three types of sensors:
 
-GC (Gas Chromatograhy)
-IR (Infrared)
-E-Nose(Electronic Nose)
+- GC (Gas Chromatograhy)
+- IR (Infrared)
+- E-Nose(Electronic Nose)
 
 The data was collected over two experimental sessions, called Run 1, and Run 2. Each sensor has its own dataset per run, resulting in 6 total tables per ID. The primary goal is to prepare the data for statistical analysis.
 
