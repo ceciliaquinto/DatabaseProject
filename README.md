@@ -112,7 +112,9 @@ Repeat for **all six cleaned CSVs**.
 
 Once data is in the database, you can begin basic exploration and comparison between sensors. Example queries:
 
-1. Join All Tables from Both Runs
+## 1. Query: Combine All Tables from Both Runs
+
+```sql
 SELECT *
 FROM r1_ir
 LEFT JOIN r1_gc ON CAST(r1_ir.testid AS VARCHAR) = r1_gc.testid
@@ -124,14 +126,11 @@ SELECT *
 FROM r2_ir
 LEFT JOIN r2_gc ON CAST(r2_ir.testid AS VARCHAR) = r2_gc.testid
 LEFT JOIN r2_e_norse ON r2_gc.testid = r2_e_norse.testid;
-Explanation: Combines IR, GC, and E-Norse data from both runs into a single unified dataset. Uses LEFT JOIN to retain all IR rows and UNION ALL to stack results from both runs.
 
-2. Join Only Run 1 Tables
-SELECT *
-FROM r1_ir
-LEFT JOIN r1_gc ON r1_ir.testid = r1_gc.testid
-LEFT JOIN r1_e_norse ON r1_gc.testid = r1_e_norse.testid;
-Explanation: Joins all tables from run 1 using testid to analyze data from this experimental session.
+
+
+
+
 
 
 
