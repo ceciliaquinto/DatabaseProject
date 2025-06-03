@@ -132,9 +132,9 @@ Purpose:
 Join the infrared (ir), gas chromatography (gc), and e-norse sensor tables for run 1 and run 2 into a single result set.
 Note: Casting is used for type compatibility on join keys.
 
-2. Query: Join Run 1 Tables
+## 2. Query: Join Run 1 Tables
 
-```
+```sql
 SELECT *
 FROM r1_ir
 LEFT JOIN r1_gc ON r1_ir.testid = r1_gc.testid
