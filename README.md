@@ -34,10 +34,7 @@ project/
 │   ├── CreationTables.sql     ← SQL file to create tables
 │   ├── load_data.sql       ← SQL commands to import CSVs
 │   └── Query.sql         ← Queries for analysis
-│
-├── README.md               ← This documentation
-└── notes/
-    └── data_cleaning_steps.md ← Detailed notes on data preprocessing
+└── README.md               ← The documentation
 ```
 
 # ✅ Step 1: Understanding the Raw Data
