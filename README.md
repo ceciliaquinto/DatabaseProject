@@ -90,6 +90,32 @@ You will have **six tables in total**, one for each sensor/run combination.
 
 ---
 
+## 📥 Step 4: Importing Cleaned Data into PostgreSQL
+
+Using SQL’s `COPY` command to load each cleaned file:
+
+```sql
+COPY run1_gc(test_id, timestamp, sensor_value_1, sensor_value_2, ...)
+FROM '/path/to/run1_gc_cleaned.csv'
+DELIMITER ','
+CSV HEADER;
+```
+
+✅ Make sure PostgreSQL has permission to access that file path. You may also use **DataGrip’s import tool** (`right-click table → Import from CSV`).  
+Repeat for **all six cleaned CSVs**.
+
+---
+## 📊 Step 5: Querying the Data
+
+Once data is in the database, you can begin basic exploration and comparison between sensors. Example queries:
+
+### 1. Average sensor values by test:
+```sql
+SELECT test_id, AVG(sensor_value_1) AS avg_value
+FROM run1_gc
+GROUP BY test_id;
+```
+
 
 # An-Introduction-to-DataGrip
 **Important Tip:** Before opening any links (blue text), we highly recommend right-clicking on them and selecting **"Open link in new tab"** to ensure the guide remains open.
