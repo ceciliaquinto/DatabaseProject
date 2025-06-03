@@ -127,10 +127,52 @@ FROM r2_ir
 LEFT JOIN r2_gc ON CAST(r2_ir.testid AS VARCHAR) = r2_gc.testid
 LEFT JOIN r2_e_norse ON r2_gc.testid = r2_e_norse.testid;
 
+Purpose:
+Join the infrared (ir), gas chromatography (gc), and e-norse sensor tables for run 1 and run 2 into a single result set.
+Note: Casting is used for type compatibility on join keys.
 
+2. Query: Join Run 1 Tables
 
+SELECT *
+FROM r1_ir
+LEFT JOIN r1_gc ON r1_ir.testid = r1_gc.testid
+LEFT JOIN r1_e_norse ON r1_gc.testid = r1_e_norse.testid;
+Purpose:
+Join the three sensor tables (ir, gc, e_norse) for run 1 to analyze combined data.
 
+3. Query: Select Specific Columns from IR Table (Run 1)
 
+SELECT ratios, harmonic, fundamental, location, testid
+FROM r1_ir;
+Purpose:
+Retrieve specific relevant columns from the infrared sensor data for run 1.
+
+4. Query: Filter GC Table (Run 1) by Test ID
+
+SELECT *
+FROM r1_gc
+WHERE testid = 1;
+Purpose:
+Select all columns for test ID 1 from the gas chromatography data in run 1.
+
+5. Query: Select All Data from E-Norse Table (Run 1), Ordered by Test ID and Sequence
+
+SELECT *
+FROM r1_e_norse
+ORDER BY testid, seq_order ASC;
+Purpose:
+Retrieve all e-norse sensor data for run 1, sorted by test ID and sequence order.
+
+6. Query: Verify Number of Distinct Test IDs in Each Table
+
+SELECT COUNT(DISTINCT testid) FROM r1_gc;
+SELECT COUNT(DISTINCT testid) FROM r1_ir;
+SELECT COUNT(DISTINCT testid) FROM r1_e_norse;
+SELECT COUNT(DISTINCT testid) FROM r2_gc;
+SELECT COUNT(DISTINCT testid) FROM r2_ir;
+SELECT COUNT(DISTINCT testid) FROM r2_e_norse;
+Purpose:
+Count how many unique tests (testid) are present in each sensor table for both experimental runs. Useful for data completeness checks.
 
 
 
