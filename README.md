@@ -56,7 +56,7 @@ project/
 
 ```
 
-# ✅ Step 1: Understanding the Raw Data
+## ✅ Step 1: Understanding the Raw Data
 
 Each sensor produced a CSV file for each test ID and run. These files originally included:
 
