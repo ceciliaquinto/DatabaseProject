@@ -54,7 +54,7 @@ project/
 └── readme/
     └── README.md                ← Project documentation
 
----
+
 # ✅ Step 1: Understanding the Raw Data
 
 Each sensor produced a CSV file for each test ID and run. These files originally included:
@@ -74,19 +74,28 @@ Common issues found in the raw data:
 - Extra columns or misaligned rows in some files  
 - Some files had no `TEST_ID` value inside the file; it was only found in the filename  
   - ➤ For consistency, we added a new `TEST_ID` column during preprocessing
- ---
+ 
 
 ## ✅ Step 2: Cleaning the Data
 
-All CSV files were cleaned using a spreadsheet tool (Excel) and Python (Pandas library). The cleaning involved:
+The raw CSV files were carefully cleaned and standardized using a combination of **Excel** and **Python (Pandas)**, ensuring high data integrity and consistency for downstream analysis.
 
-- **Assigning missing IDs**: Ensuring each row is correctly associated with a Test ID from 1 to 50.  
-- **Correcting decimal formats**: Replacing commas (`,`) with dots (`.`) in numeric values to allow correct parsing.  
-- **Filling missing values**: Instead of removing rows with missing data, appropriate placeholder values (e.g., NULL) were assigned to empty cells to preserve the structure and completeness of the dataset.
-- **Standardizing columns**: Ensuring all files have the same structure: `test_id`, `timestamp`, and sensor readings.  
-- **Saving cleaned files**: Exported as `.csv` again in UTF-8 encoding, ready to be imported into the database.  
+The cleaning process included:
 
----
+- **Assigning Missing IDs**: Several files lacked internal `test_id` entries — this was particularly common in E-nose and IR files, where the test ID was present only in the filename. We systematically extracted the ID and run number from filenames and inserted them as new columns to make the data usable for SQL queries and statistical analysis.
+
+- **Fixing Decimal Notation**: Some values used commas (`,`) instead of dots (`.`) for decimal separation. This inconsistency was resolved across all files to avoid parsing issues and maintain numerical accuracy.
+
+- **Handling Missing Values Intelligently**: Instead of dropping rows with incomplete data, we retained them by using placeholders such as `NULL`, maintaining the structure and preserving data that might still be valuable for time-series alignment or anomaly detection.
+
+- **Column Standardization**: We ensured a consistent schema across all files, with clearly labeled and ordered columns such as `test_id`, `timestamp`, `sensor_reading_1`, `sensor_reading_2`, etc., allowing automated ingestion into the database and seamless analysis.
+
+- **Merging and Organizing by Run**: Cleaned data was grouped by sensor type and experimental run, generating organized datasets like `run1_gc.csv`, `run2_ir.csv`, etc., each representing a complete set of Test IDs for a given configuration.
+
+- **Encoding and Export**: Final files were exported as UTF-8 encoded `.csv` files to ensure compatibility with PostgreSQL and avoid encoding-related issues during import.
+
+This multi-step cleaning process ensured the dataset was not only usable but also reliable for exploratory analysis, machine learning, and long-term archival.
+
 
 ## 🛠️ Step 3: Creating the Local PostgreSQL Database
 
