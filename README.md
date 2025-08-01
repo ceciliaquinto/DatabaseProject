@@ -57,16 +57,23 @@ project/
 ---
 # ✅ Step 1: Understanding the Raw Data
 
-Each sensor produced a CSV file per run. These files originally included:
+Each sensor produced a CSV file for each test ID and run. These files originally included:
 
-- Sensor readings over time for each Test ID (1 to 50)  
-- Some columns with missing or invalid values  
-- Inconsistent formatting, such as:
-  - Commas instead of dots for decimal numbers  
-  - Empty cells  
-  - Column headers missing or mismatched  
-  - Extra columns or misaligned rows
+- Time-series sensor readings for each Test ID (typically from 1 to 50)  
+- Each run was recorded separately (e.g., Run 1 and Run 2)  
+- Filenames contained the Test ID and run number in the file name, but not inside the CSV content, especially for E-nose and IR sensors.
+- **E-nose example:** `001run1.csv`, `001run2.csv`, `002run1.csv`  
+- **IR example:** `unm_001_1_2024.csv`, `uni_001_2.csv`, `unm_012_2_2024.csv`
 
+Common issues found in the raw data:
+
+- Missing or invalid values in some columns  
+- Decimal values using commas instead of dots (e.g., `3,14` instead of `3.14`)  
+- Empty cells or NaN values  
+- Missing or mismatched column headers  
+- Extra columns or misaligned rows in some files  
+- Some files had no `TEST_ID` value inside the file; it was only found in the filename  
+  - ➤ For consistency, we added a new `TEST_ID` column during preprocessing
  ---
 
 ## ✅ Step 2: Cleaning the Data
