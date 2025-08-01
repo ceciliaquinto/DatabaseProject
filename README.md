@@ -34,8 +34,8 @@ project/
 │   │   └── ...
 │   └── ring_ir/                 ← Infrared (IR) sensor data
 │       ├── unm_001_1_2024.csv
-│       ├── uni_001_2.csv
-│       ├── unm_012_2_2024.csv
+│       ├── unm_001_2_2024.csv
+│       ├── unm_002_2_2024.csv
 │       └── ...
 │
 ├── cleaned_data/                ← Cleaned CSVs for analysis
