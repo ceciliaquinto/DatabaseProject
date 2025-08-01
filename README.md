@@ -82,17 +82,17 @@ The raw CSV files were carefully cleaned and standardized using a combination of
 
 The cleaning process included:
 
-- **Assigning Missing IDs**: Several files lacked internal `test_id` entries — this was particularly common in E-nose and IR files, where the test ID was present only in the filename. We systematically extracted the ID and run number from filenames and inserted them as new columns to make the data usable for SQL queries and statistical analysis.
+- Assigning Missing IDs: Several files lacked internal `test_id` entries — this was particularly common in E-nose and IR files, where the test ID was present only in the filename. We systematically extracted the ID and run number from filenames and inserted them as new columns to make the data usable for SQL queries and statistical analysis.
 
-- **Fixing Decimal Notation**: Some values used commas (`,`) instead of dots (`.`) for decimal separation. This inconsistency was resolved across all files to avoid parsing issues and maintain numerical accuracy.
+- Fixing Decimal Notation: Some values used commas (`,`) instead of dots (`.`) for decimal separation. This inconsistency was resolved across all files to avoid parsing issues and maintain numerical accuracy.
 
-- **Handling Missing Values Intelligently**: Instead of dropping rows with incomplete data, we retained them by using placeholders such as `NULL`, maintaining the structure and preserving data that might still be valuable for time-series alignment or anomaly detection.
+- Handling Missing Values Intelligently**: Instead of dropping rows with incomplete data, we retained them by using placeholders such as `NULL`, maintaining the structure and preserving data that might still be valuable for time-series alignment or anomaly detection.
 
-- **Column Standardization**: We ensured a consistent schema across all files, with clearly labeled and ordered columns such as `test_id`, `timestamp`, `sensor_reading_1`, `sensor_reading_2`, etc., allowing automated ingestion into the database and seamless analysis.
+- Column Standardization: We ensured a consistent schema across all files, with clearly labeled and ordered columns such as `test_id`, `timestamp`, `sensor_reading_1`, `sensor_reading_2`, etc., allowing automated ingestion into the database and seamless analysis.
 
-- **Merging and Organizing by Run**: Cleaned data was grouped by sensor type and experimental run, generating organized datasets like `run1_gc.csv`, `run2_ir.csv`, etc., each representing a complete set of Test IDs for a given configuration.
+- Merging and Organizing by Run: Cleaned data was grouped by sensor type and experimental run, generating organized datasets like `run1_gc.csv`, `run2_ir.csv`, etc., each representing a complete set of Test IDs for a given configuration.
 
-- **Encoding and Export**: Final files were exported as UTF-8 encoded `.csv` files to ensure compatibility with PostgreSQL and avoid encoding-related issues during import.
+- Encoding and Export: Final files were exported as UTF-8 encoded `.csv` files to ensure compatibility with PostgreSQL and avoid encoding-related issues during import.
 
 This multi-step cleaning process ensured the dataset was not only usable but also reliable for exploratory analysis, machine learning, and long-term archival.
 
