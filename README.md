@@ -86,7 +86,7 @@ The cleaning process included:
 
 - Fixing Decimal Notation: Some values used commas (`,`) instead of dots (`.`) for decimal separation. This inconsistency was resolved across all files to avoid parsing issues and maintain numerical accuracy.
 
-- Handling Missing Values Intelligently**: Instead of dropping rows with incomplete data, we retained them by using placeholders such as `NULL`, maintaining the structure and preserving data that might still be valuable for time-series alignment or anomaly detection.
+- Handling Missing Values Intelligently: Instead of dropping rows with incomplete data, we retained them by using placeholders such as `NULL`, maintaining the structure and preserving data that might still be valuable for time-series alignment or anomaly detection.
 
 - Column Standardization: We ensured a consistent schema across all files, with clearly labeled and ordered columns such as `test_id`, `timestamp`, `sensor_reading_1`, `sensor_reading_2`, etc., allowing automated ingestion into the database and seamless analysis.
 
