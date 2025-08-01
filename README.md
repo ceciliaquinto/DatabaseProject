@@ -18,26 +18,39 @@ The data was collected over two experimental sessions, called Run 1, and Run 2. 
 
 ## 🗂️ Folder Structure
 
-```
 project/
 │
-├── raw_data/               ← Original CSV files from experiments
-│   ├── run1_gc.csv
-│   ├── run1_ir.csv
-│   └── ...
+├── raw_data/                     ← Original CSV files from experiments
+│   ├── carbon_e_nose/           ← E-nose sensor data
+│   │   ├── 001run1.csv
+│   │   ├── 001run2.csv
+│   │   ├── 002run1.csv
+│   │   └── ...
+│   ├── defiant_gc/              ← Gas Chromatography (GC) data
+│   │   ├── run1.csv
+│   │   ├── run2.csv
+│   │   └── ...
+│   └── ring_ir/                 ← Infrared (IR) sensor data
+│       ├── unm_001_1_2024.csv
+│       ├── uni_001_2.csv
+│       ├── unm_012_2_2024.csv
+│       └── ...
 │
-├── cleaned_data/           ← Cleaned CSVs after formatting and corrections
-│   ├── run1_gc.csv
-│   └── ...
+├── cleaned_data/                ← Cleaned CSVs for analysis
+│   ├── run1_gc.csv              ← Contains all TEST_IDs for Run 1 using the GC sensor only
+│   ├── run2_gc.csv              ← Contains all TEST_IDs for Run 2 using the GC sensor only
+│   ├── run1_ir.csv              ← Contains all TEST_IDs for Run 1 using the IR sensor only
+│   ├── run2_ir.csv              ← Contains all TEST_IDs for Run 2 using the IR sensor only
+│   ├── run1_enose.csv           ← Contains all TEST_IDs for Run 1 using the E-nose sensor only
+│   └── run2_enose.csv           ← Contains all TEST_IDs for Run 2 using the E-nose sensor only
 │
 ├── sql/
-│   ├── CreationTables.sql     ← SQL file to create tables
-│   ├── load_data.sql       ← SQL commands to import CSVs
-│   └── Query.sql         ← Queries for analysis
+│   ├── CreationTables.sql       ← SQL file to create all tables in PostgreSQL
+│   ├── load_data.sql            ← SQL commands to import each cleaned CSV
+│   └── Query.sql                ← SQL queries for data analysis and exploration
 │
-└──readme/
-    ├──  README.md               ← The documentation
-```
+└── readme/
+    └── README.md                ← Project documentation
 
 # ✅ Step 1: Understanding the Raw Data
 
