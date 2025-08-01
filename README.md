@@ -17,7 +17,9 @@ This project documents the creation and use of a local PostgreSQL database to ma
 The data was collected over two experimental sessions, called Run 1, and Run 2. Each sensor has its own dataset per run, resulting in 6 total tables per ID. The primary goal is to prepare the data for statistical analysis.
 
 ## 🗂️ Folder Structure
---
+
+```
+
 project/
 │
 ├── raw_data/                     ← Original CSV files from experiments
